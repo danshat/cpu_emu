@@ -1,0 +1,22 @@
+#ifndef SYSTEM_H
+#define SYSTEM_H
+
+#include "Memory.h"
+#include "cpu.h"
+#include <QObject>
+
+class System : public QObject
+{
+    Q_OBJECT
+public:
+    explicit System(QObject *parent = nullptr);
+    Memory *memory;
+    CPU *cpu;
+public slots:
+    void run();
+    void loadDefaultProgram();
+signals:
+    void sendUpdateRegisterUI(CPU *cpu);
+};
+
+#endif // SYSTEM_H
