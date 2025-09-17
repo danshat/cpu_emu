@@ -16,10 +16,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::updateRegisters(CPU *cpu) {
     ui->lcdNumber->display((double)cpu->stackPointer.to_ulong());
-    ui->lcdNumber_2->display((double)cpu->aluOp1Reg.to_ulong());
-    ui->lcdNumber_3->display((double)cpu->aluOp2Reg.to_ulong());
-    ui->lcdNumber_4->display((double)cpu->instructionRegister.to_ulong());
+    ui->lcdNumber_3->display((double)cpu->aluOp1Reg.to_ulong());
+    ui->lcdNumber_4->display((double)cpu->aluOp2Reg.to_ulong());
+    ui->lcdNumber_2->display((double)cpu->instructionRegister.to_ulong());
     ui->lcdNumber_5->display((int)cpu->tick);
+    ui->listWidget->clearSelection();
+    ui->listWidget->selectionModel()->setCurrentIndex(ui->listWidget->model()->index((double)cpu->stackPointer.to_ulong(),0), QItemSelectionModel::SelectionFlag::Select);
 }
 
 void MainWindow::updateMemoryListbox(Memory *mem) {
@@ -60,5 +62,11 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     emit oneTick();
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    for (int i=0; i<4; i++) emit oneTick();
 }
 

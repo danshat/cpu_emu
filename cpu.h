@@ -14,7 +14,7 @@ public:
 
     CPU();
 
-    unsigned int tick;
+    int tick;
 
 };
 
