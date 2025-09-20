@@ -22,6 +22,7 @@ signals:
 public slots:
     void updateMemoryListbox(Memory *mem);
     void updateRegisters(CPU *cpu);
+    void decodeLabel(QString text);
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();

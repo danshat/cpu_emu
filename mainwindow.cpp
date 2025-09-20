@@ -15,6 +15,21 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::updateRegisters(CPU *cpu) {
+    int cycle = cpu->tick % 4;
+    switch (cycle) {
+        case 0:
+            ui->label_10->setText("Увеличение (IC)");
+        break;
+        case 1:
+            ui->label_10->setText("Выборка (IF)");
+        break;
+        case 2:
+            ui->label_10->setText("Раскодирование (ID)");
+        break;
+        case 3:
+            ui->label_10->setText("Выполнение (EX)");
+        break;
+    }
     ui->lcdNumber->display((double)cpu->stackPointer.to_ulong());
     ui->lcdNumber_3->display((double)cpu->aluOp1Reg.to_ulong());
     ui->lcdNumber_4->display((double)cpu->aluOp2Reg.to_ulong());
@@ -22,6 +37,10 @@ void MainWindow::updateRegisters(CPU *cpu) {
     ui->lcdNumber_5->display((int)cpu->tick);
     ui->listWidget->clearSelection();
     ui->listWidget->selectionModel()->setCurrentIndex(ui->listWidget->model()->index((double)cpu->stackPointer.to_ulong(),0), QItemSelectionModel::SelectionFlag::Select);
+}
+
+void MainWindow::decodeLabel(QString text) {
+    ui->label_8->setText(text);
 }
 
 void MainWindow::updateMemoryListbox(Memory *mem) {

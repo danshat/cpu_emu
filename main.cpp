@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     QObject::connect(system->memory, &Memory::updateMemoryUI, &w, &MainWindow::updateMemoryListbox);
     QObject::connect(&w, &MainWindow::loadDefaultProgram, system, &System::loadDefaultProgram);
     QObject::connect(system, &System::sendUpdateRegisterUI, &w, &MainWindow::updateRegisters);
+    QObject::connect(system, &System::decodeLabel, &w, &MainWindow::decodeLabel);
     QObject::connect(&w, &MainWindow::oneTick, system, &System::run);
     logicThr->start();
 

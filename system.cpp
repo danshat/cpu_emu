@@ -32,12 +32,84 @@ void System::run() {
     }
     case 1:
         // Decode
+    {
         qInfo() << "Tick " << cpu->tick << " DECODE";
+        unsigned long command = cpu->instructionRegister.to_ulong();
+        switch (command) {
+            case 0:
+                emit decodeLabel("TOREG1");
+                break;
+            case 1:
+                emit decodeLabel("TOREG2");
+                break;
+
+            case 2:
+                emit decodeLabel("CMP");
+                break;
+            case 3:
+                emit decodeLabel("REG1TM");
+                break;
+            case 4:
+                emit decodeLabel("HLT");
+                break;
+        }
+
         break;
+    }
     case 2:
         // Execute
+    {
         qInfo() << "Tick " << cpu->tick << " EXECUTE";
+        unsigned long command = cpu->instructionRegister.to_ulong();
+        switch (command) {
+            case 0:
+                {
+                    qInfo() << "EXECUTE TOREG1";
+                    cpu->stackPointer = cpu->stackPointer.to_ulong() + 1;
+                    unsigned long esp = cpu->stackPointer.to_ulong();
+                    std::bitset<33> data = memory->get_cell(esp);
+                    qInfo() << "DATA IN STACK " << data.to_string();
+                    std::bitset<32> literal = 0;
+                    for (int i = 0; i < 32; i++) {
+                        literal[i] = data[i];
+                    }
+                    cpu->aluOp1Reg = literal;
+                    qInfo() << "LOAD TO REG1 " << literal.to_ulong();
+
+                    break;
+                }
+            case 1:
+                {
+                    qInfo() << "EXECUTE TOREG2";
+                    cpu->stackPointer = cpu->stackPointer.to_ulong() + 1;
+                    unsigned long esp = cpu->stackPointer.to_ulong();
+                    std::bitset<33> data = memory->get_cell(esp);
+                    qInfo() << "DATA IN STACK " << data.to_string();
+                    std::bitset<32> literal = 0;
+                    for (int i = 0; i < 32; i++) {
+                        literal[i] = data[i];
+                    }
+                    cpu->aluOp2Reg = literal;
+                    qInfo() << "LOAD TO REG2 " << literal.to_ulong();
+                    break;
+                }
+                break;
+            case 2:
+                {
+                    qInfo() << "EXECUTE CMP";
+                    cpu->aluOp1Reg = std::max(cpu->aluOp1Reg.to_ulong(), cpu->aluOp2Reg.to_ulong());
+                }
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+        }
+
         break;
+    }
     case 3:
         // Increase ESP
         qInfo() << "Tick " << cpu->tick << " INCREASE";

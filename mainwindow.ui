@@ -175,7 +175,7 @@
           <number>10</number>
          </property>
          <property name="mode">
-          <enum>QLCDNumber::Hex</enum>
+          <enum>QLCDNumber::Dec</enum>
          </property>
          <property name="segmentStyle">
           <enum>QLCDNumber::Flat</enum>
@@ -236,7 +236,7 @@
           <number>10</number>
          </property>
          <property name="mode">
-          <enum>QLCDNumber::Hex</enum>
+          <enum>QLCDNumber::Dec</enum>
          </property>
          <property name="segmentStyle">
           <enum>QLCDNumber::Flat</enum>
@@ -387,7 +387,7 @@
      <rect>
       <x>300</x>
       <y>460</y>
-      <width>226</width>
+      <width>681</width>
       <height>41</height>
      </rect>
     </property>
@@ -404,7 +404,21 @@
        <item>
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Выборка (IF)</string>
+          <string>(Пусто)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Операция в IR:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>(Пусто)</string>
          </property>
         </widget>
        </item>
@@ -454,32 +468,6 @@
       <widget class="QLabel" name="label_15">
        <property name="text">
         <string>Поиск максимума в массиве</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>330</y>
-      <width>441</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Операция в IR:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>(Пусто)</string>
        </property>
       </widget>
      </item>
