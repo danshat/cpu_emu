@@ -14,6 +14,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     memory.cpp \
+    src/commandswindow.cpp \
+    src/cpu.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/memory.cpp \
+    src/system.cpp \
     system.cpp
 
 HEADERS += \
@@ -21,11 +27,19 @@ HEADERS += \
     cpu.h \
     mainwindow.h \
     memory.h \
+    src/headers/commandswindow.h \
+    src/headers/cpu.h \
+    src/headers/mainwindow.h \
+    src/headers/memory.h \
+    src/headers/system.h \
     system.h
 
 FORMS += \
     commandswindow.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    src/ui/commands.ui \
+    src/ui/commandswindow.ui \
+    src/ui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
