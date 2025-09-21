@@ -15,9 +15,12 @@ public:
 public slots:
     void run();
     void loadDefaultProgram();
+    void started();
 signals:
     void sendUpdateRegisterUI(CPU *cpu);
     void decodeLabel(QString a);
+    void halt();
+    void updateMemoryUI(Memory *mem);
 };
 
 #endif // SYSTEM_H

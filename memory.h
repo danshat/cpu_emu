@@ -11,10 +11,13 @@ public:
     void set_cell(int cellNumber, std::bitset<33> value);
     std::bitset<33> get_cell(int cellNumber);
     Memory();
+    void reset();
 signals:
     void updateMemoryUI(Memory *mem);
 public slots:
     void init_default_program();
+    void memReset();
+
 };
 
 

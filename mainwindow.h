@@ -19,17 +19,20 @@ public:
 signals:
     void loadDefaultProgram();
     void oneTick();
+    void memReset();
+    void cpuReset();
 public slots:
     void updateMemoryListbox(Memory *mem);
     void updateRegisters(CPU *cpu);
     void decodeLabel(QString text);
+    void halt();
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::MainWindow *ui;

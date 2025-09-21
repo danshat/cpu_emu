@@ -12,6 +12,15 @@ void Memory::set_cell(int cellNumber, std::bitset<33> value) {
     emit updateMemoryUI(this);
 }
 
+void Memory::reset() {
+    ramStorage = 0;
+    emit updateMemoryUI(this);
+}
+
+void Memory::memReset() {
+    reset();
+}
+
 std::bitset<33> Memory::get_cell(int cellNumber) {
     int pos = cellNumber * 33;
     std::bitset<33> resultCell;

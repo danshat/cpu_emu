@@ -11,6 +11,9 @@ System::System(QObject *parent)
     memory = new Memory();
 }
 
+void System::started() {
+    emit updateMemoryUI(memory);
+}
 
 void System::run() {
     switch (cpu->tick % 4) {
@@ -101,10 +104,19 @@ void System::run() {
                 }
                 break;
             case 3:
-
+                {
+                    qInfo() << "EXECUTE REG1TM";
+                    std::bitset<32> reg1 = cpu->aluOp1Reg;
+                    std::bitset<33> writeCell = 1ULL << 32;
+                    for (int i = 0; i < 32; i++) {
+                        writeCell[i] = reg1[i];
+                    }
+                    memory->set_cell(cpu->stackPointer.to_ulong(), writeCell);
+                    qInfo() << "WROTE TO MEMORY " << writeCell.to_string();
+                }
                 break;
             case 4:
-
+                emit halt();
                 break;
         }
 

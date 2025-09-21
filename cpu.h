@@ -15,6 +15,10 @@ public:
     CPU();
 
     int tick;
+signals:
+    void updateRegisters(CPU *cpu);
+public slots:
+    void cpuReset();
 
 };
 

@@ -14,6 +14,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+void MainWindow::halt() {
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_4->setEnabled(false);
+}
+
 void MainWindow::updateRegisters(CPU *cpu) {
     int cycle = cpu->tick % 4;
     switch (cycle) {
@@ -87,5 +92,14 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
     for (int i=0; i<4; i++) emit oneTick();
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    ui->pushButton_2->setEnabled(true);
+    ui->pushButton_4->setEnabled(true);
+    emit memReset();
+    emit cpuReset();
 }
 
